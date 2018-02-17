@@ -5,7 +5,7 @@ from sklearn import model_selection
 
 
 process=processing()
-df=process.read_data_txt('kddcup.txt')
+df=process.read_data_txt('../resources/data_set/kddcup.txt')
 df=process.dropduplicates(df)
 df.dropna(inplace=True)
 df=process.cat_to_num(df)

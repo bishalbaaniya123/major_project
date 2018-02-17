@@ -3,7 +3,7 @@ from scapy.layers.inet import ICMP,IP
 import subprocess
 
 class packet_feed:
-    sniffer_log = open("packet_feed/log.txt", "w")
+    sniffer_log = open("resources/logs/log.txt", "w")
 
     proto_sniff="0"
     packet_no = 0
