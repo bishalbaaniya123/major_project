@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy
 import csv
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 
 dataset_headers = ["duration", "protocol_type", "service", "flag", "src_bytes", "dst_bytes", "land",
                    "wrong_fragment",
@@ -17,7 +19,7 @@ dataset_headers = ["duration", "protocol_type", "service", "flag", "src_bytes", 
                    "dst_host_rerror_rate", "dst_host_srv_rerror_rate", "type"]
 
 
-class preprocessing:
+class processing:
     # reading the txt dataset file as a dataframe
     def read_data_txt(self, txt_file):
         global dataset_headers
@@ -74,3 +76,9 @@ class preprocessing:
         df['type'].replace(['normal', '.*'], [0, 1], regex=True, inplace=True)
         # df.to_csv('output.csv',index=False)
         return df
+
+    def scale_and_pca(self,feature_values):
+        z_scaler = StandardScaler()
+        z_data = z_scaler.fit_transform(feature_values)
+        prin_comp = PCA(n_components=6).fit_transform(z_data)
+        return prin_comp
